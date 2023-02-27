@@ -1,7 +1,7 @@
 #! usr/bin/env
-const readline = require('readline')
-const fs = require('fs');
-const process = require('process')
+const readline = require('readline');
+const fs       = require('fs');
+const process  = require('process');
 
 const inquirer = readline.createInterface({
   input: process.stdin,
@@ -9,24 +9,24 @@ const inquirer = readline.createInterface({
 });
 
 let win = 0;
-let lose = 0
+let lose = 0;
 
-const s = process.argv;
-const gameFile = s[s.length - 1];
+const prArgs = process.argv;
+const gameFile = prArgs[ prArgs.length - 1 ];
 
-fs.appendFile(gameFile, '', (err) => { if (err) throw err })
+fs.appendFile( gameFile, '', (err) => { if (err) throw err });
 
 function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; 
+    min = Math.ceil( min );
+    max = Math.floor( max );
+    return Math.floor( Math.random() * ( max - min + 1 )) + min; 
   }
 
 function eagle() {
         inquirer.question('Орёл илл Решка? (1/2) ', (guess) => {
             if (guess == 'exit') { process.exit() };
             
-            let correctAnswer = getRandomIntInclusive(1, 2);
+            const correctAnswer = getRandomIntInclusive(1, 2);
 
             if (guess == correctAnswer) {
                 win += 1
